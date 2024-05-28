@@ -1,50 +1,55 @@
-import { Outlet } from "react-router-dom";
-import Wrapper from "../assets/wrappers/Dashboard";
-import { BigSideBar, Navbar, SmallSideBar } from "../components";
-import { useContext, useState } from "react";
+import { Outlet } from 'react-router-dom';
 
-const DashboardContext = createContext()
+import Wrapper from '../assets/wrappers/Dashboard';
+import { Navbar, BigSideBar, SmallSideBar } from '../components';
 
+import { useState, createContext, useContext } from 'react';
+const DashboardContext = createContext();
 const DashboardLayout = () => {
-  const user = {name:'Subbu'}
-  const [showSidebar,setShowSidebar] = useState(false)
-  const [isDarkTheme,setDarkTheme] = useState(false)
+  // temp
+  const user = { name: 'Subbu' };
 
-  const toggleDarkTheme = () =>{
-    console.log('toggled dark theme');
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const toggleDarkTheme = () => {
+    console.log('toggle dark theme');
   };
 
-  const toggleSidebar = () =>{
+  const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-  
+
   const logoutUser = async () => {
     console.log('logout user');
   };
-
   return (
-    <DashboardContext.Provider value={{
-      user,
-      showSidebar,
-      isDarkTheme,
-      toggleDarkTheme,
-      toggleSidebar,
-      logoutUser,
-    }}>
-    <Wrapper>
-      <main className="dashboard">
-        <SmallSideBar />
-        <BigSideBar />
-        <div>
-          <Navbar />
-          <div className="dashboard-page">
-            <Outlet />
+    <DashboardContext.Provider
+      value={{
+        user,
+        showSidebar,
+        isDarkTheme,
+        toggleDarkTheme,
+        toggleSidebar,
+        logoutUser,
+      }}
+    >
+      <Wrapper>
+        <main className='dashboard'>
+          <SmallSideBar />
+          <BigSideBar />
+          <div>
+            <Navbar />
+            <div className='dashboard-page'>
+              <Outlet />
+            </div>
           </div>
-        </div>
-      </main>
-    </Wrapper>
+        </main>
+      </Wrapper>
     </DashboardContext.Provider>
   );
 };
-export const useDashboardContext = () => useContext(DashboardContext)
-export default DashboardLayout
+
+export const useDashboardContext = () => useContext(DashboardContext);
+
+export default DashboardLayout;
