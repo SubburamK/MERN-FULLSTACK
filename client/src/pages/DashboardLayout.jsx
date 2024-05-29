@@ -4,6 +4,8 @@ import Wrapper from '../assets/wrappers/Dashboard';
 import { Navbar, BigSideBar, SmallSideBar } from '../components';
 
 import { useState, createContext, useContext } from 'react';
+import { checkDefaultTheme } from '../App';
+
 const DashboardContext = createContext();
 
 
